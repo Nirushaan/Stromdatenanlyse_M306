@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+
 public class Reader_Esl {
     private ArrayList<Esl> output = new ArrayList<>();
 
@@ -50,7 +51,16 @@ public class Reader_Esl {
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
+        //Sorts Objects in array
+        output.sort((o1, o2) -> o1.getTimePeriod().compareToIgnoreCase(o2.getTimePeriod()));
+        for(int i = 0; i < output.size()-1; i++){
+            if (output.get(i).getTimePeriod().equals(output.get(i + 1).getTimePeriod())){
+                output.remove(i+1);
+                i--;
+            }
+        }
     }
+
 
     void readAllFiles(){
         try {
