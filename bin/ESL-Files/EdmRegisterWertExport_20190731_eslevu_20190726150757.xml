@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ESLBillingData>
+<Header version="1.0" created ="2019-07-31T00:00:00" swSystemNameFrom="ESL-EVU" swSystemNameTo="ESL-EVU" />
+<Meter factoryNo="5442313" internalNo="5442313">
+<TimePeriod end="2019-07-01T00:00:00">
+<ValueRow obis="8-1:1.8.0" value="246.0000" status="V"/>
+</TimePeriod>
+</Meter>
+</ESLBillingData>
