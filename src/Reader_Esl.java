@@ -12,7 +12,7 @@ public class Reader_Esl {
     public void readAllFiles(){
         try {
             String[] fileNames =
-                    Files.list(Paths.get("/bin/ESL-Files")).filter(
+                    Files.list(Paths.get("C:\\Users\\Hunter\\IdeaProjects\\Bunzlienergie\\bin\\ESL-Files")).filter(
                             Files::isRegularFile).map(
                             p -> p.toFile().getName()).toArray(String[]::new);
             for (String s : fileNames) {
