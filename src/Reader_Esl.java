@@ -5,60 +5,61 @@ import javax.xml.parsers.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class Reader_Esl {
-    private Esl output;
+    private ArrayList<Esl> output = new ArrayList<>();
 
-    private Esl readFile(File f){
+    private void readFile(File f){
         try {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(f);
-        Element rootElement = doc.getDocumentElement();
-        System.out.println(rootElement.getNodeName());
         NodeList TimeList = doc.getElementsByTagName("TimePeriod");
         for (int i = 0; i < TimeList.getLength(); i++){
             Node nodetime = TimeList.item(i);
             Esl esl = new Esl();
             if (nodetime.getNodeType() == Node.ELEMENT_NODE){
-                Element e = (Element) nodetime;
+                Element e = (Element) nodetime; //Timeperiod
                 esl.setTimePeriod(e.getAttribute("end"));
-                System.out.println(esl.getTimePeriod());
-            }
-
-        }
-        NodeList ValueList = doc.getElementsByTagName("ValueRow");
-        System.out.println(ValueList.getLength());
-        for (int i = 0; i < ValueList.getLength(); i++) {
-            Node node = ValueList.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element e = (Element) node;
-                if (e.getAttribute("obis").equals("1-1:1.8.1") ||
-                        e.getAttribute("obis").equals("1-1:1.8.2") ||
-                        e.getAttribute("obis").equals("1-1:2.8.1") ||
-                        e.getAttribute("obis").equals("1-1:2.8.2")) {
-
-                    System.out.println(e.getAttribute("value"));
+                NodeList ValueList = doc.getElementsByTagName("ValueRow");
+                ArrayList<Esl_values> list = new ArrayList<>();
+                for (int j = 0; j < ValueList.getLength(); j++) {
+                    Node node = ValueList.item(j);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element ee = (Element) node; //ValueRow
+                        Element eee = (Element) node.getParentNode();
+                        if (    eee.getAttribute("end").equals(e.getAttribute("end")) &&
+                                (       ee.getAttribute("obis").equals("1-1:1.8.1") ||
+                                        ee.getAttribute("obis").equals("1-1:1.8.2") ||
+                                        ee.getAttribute("obis").equals("1-1:2.8.1") ||
+                                        ee.getAttribute("obis").equals("1-1:2.8.2"))) {
+                                    Esl_values values = new Esl_values();
+                                    values.setObis(ee.getAttribute("obis"));
+                                    values.setValue(Float.parseFloat(ee.getAttribute("value")));
+                                    list.add(values);
+                        }
+                    }
+                }
+                if (list.size() > 0){
+                    esl.setArray(list);
                 }
             }
-
+            output.add(esl);
         }
-
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
-        return null;
     }
-
 
     void readAllFiles(){
         try {
             String[] fileNames =
-                    Files.list(Paths.get("C:\\Users\\Hunter\\IdeaProjects\\Bunzlienergie\\bin\\ESL-Files")).filter(
+                    Files.list(Paths.get(".\\bin\\ESL-Files")).filter(
                             Files::isRegularFile).map(
                             p -> p.toFile().getName()).toArray(String[]::new);
             for (String s : fileNames) {
-                File filepath = new File("C:\\Users\\Hunter\\IdeaProjects\\Bunzlienergie\\bin\\ESL-Files\\" + s);
+                File filepath = new File(".\\bin\\ESL-Files\\" + s);
                 readFile(filepath);
             }
         }
@@ -67,11 +68,11 @@ public class Reader_Esl {
         }
     }
 
-    public Esl getOutput() {
+    ArrayList<Esl> getOutput() {
         return output;
     }
 
-    public void setOutput(Esl output) {
+    public void setOutput(ArrayList<Esl> output) {
         this.output = output;
     }
 }
