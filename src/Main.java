@@ -9,9 +9,6 @@ public class Main {
         sdatreader.readAllFiles();
         ArrayList<Esl> eslarray = eslreader.getOutput();
         ArrayList<Sdat> sdatarray = sdatreader.getOutput();
-        for (Sdat sdat:sdatarray) {
-            System.out.println(sdat.getStartDateTime());
-            System.out.println(sdat.getEndDateTime());
-        }
+        Combine_Esl_Sdat combine = new Combine_Esl_Sdat(eslarray, sdatarray);
     }
 }

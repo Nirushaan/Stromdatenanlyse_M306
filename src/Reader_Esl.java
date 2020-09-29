@@ -53,6 +53,7 @@ public class Reader_Esl {
         }
         //Sorts Objects in array
         output.sort((o1, o2) -> o1.getTimePeriod().compareToIgnoreCase(o2.getTimePeriod()));
+        //Removes duplicates
         for(int i = 0; i < output.size()-1; i++){
             if (output.get(i).getTimePeriod().equals(output.get(i + 1).getTimePeriod())){
                 output.remove(i+1);
