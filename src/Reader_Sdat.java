@@ -54,20 +54,14 @@ class Reader_Sdat {
             for (int i = 0; i < oblist.getLength(); i++){
                 Observation observation = new Observation();
                 Node nodeob = oblist.item(i);
-                NodeList childlist = nodeob.getChildNodes();
-                for (int j = 0; i < 2; i++){
-                    Node childnode = childlist.item(j);
-                    if (j == 0){
-                        Node sequence = childlist.item(j);
-                        System.out.println(sequence.getTextContent());
-                    } else {
-
-                    }
-
-                }
-                //observation.setSequence(Integer.parseInt());
-
+                Node Volume = nodeob.getFirstChild().getNextSibling();
+                Node Position = nodeob.getFirstChild();
+                observation.setValue(Float.parseFloat(Volume.getTextContent()));
+                observation.setSequence(Integer.parseInt(Position.getFirstChild().getTextContent()));
+                list.add(observation);
             }
+            sdat.setArray(list);
+            output.add(sdat);
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
@@ -89,5 +83,13 @@ class Reader_Sdat {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Sdat> getOutput() {
+        return output;
+    }
+
+    public void setOutput(ArrayList<Sdat> output) {
+        this.output = output;
     }
 }
