@@ -1,4 +1,4 @@
-package Main.Gui;
+package Gui;
 
 /**
  * short description of ZaehlerstandGui
