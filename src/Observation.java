@@ -1,7 +1,3 @@
-package Main.Model;
-
-import Main.Main;
-
 public class Observation {
     private Integer sequence;
     private Float value;

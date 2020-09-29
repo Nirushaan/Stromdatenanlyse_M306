@@ -1,5 +1,3 @@
-package Main.Model;
-
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -65,7 +63,7 @@ public class Reader_Esl {
     }
 
 
-    public void readAllFiles(){
+    void readAllFiles(){
         try {
             String[] fileNames =
                     Files.list(Paths.get(".\\bin\\ESL-Files")).filter(
@@ -81,7 +79,7 @@ public class Reader_Esl {
         }
     }
 
-    public ArrayList<Esl> getOutput() {
+    ArrayList<Esl> getOutput() {
         return output;
     }
 
