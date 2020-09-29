@@ -1,21 +1,14 @@
 package Model;
 
-import javax.xml.crypto.Data;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Combine_Esl_Sdat {
-    private ArrayList<Esl> esllist;
-    private ArrayList<Sdat> sdatlist;
     private ArrayList<Sdat> id742list = new ArrayList<>();
     private ArrayList<Sdat> id735list = new ArrayList<>();
-    ArrayList<Absolute> absolutelist = new ArrayList<>();
-    ArrayList<Use> uselist = new ArrayList<>();
+    private ArrayList<Absolute> absolutelist = new ArrayList<>();
+    private ArrayList<Use> uselist = new ArrayList<>();
     public Combine_Esl_Sdat(ArrayList<Esl> esllist,ArrayList<Sdat> sdatlist) {
-        this.esllist = esllist;
-        this.sdatlist = sdatlist;
-        splitDocuments(this.sdatlist);
+        splitDocuments(sdatlist);
         sortDocuments(id735list);
         sortDocuments(id742list);
         removeRedundance(id742list);
@@ -34,8 +27,17 @@ public class Combine_Esl_Sdat {
             absolutelist.add(absolute2);
         }
         //Create Use Data
-        for (Sdat s:sdatlist){
-
+        for (Sdat s:id742list){
+            Use use = new Use();
+            use.setID("ID724");
+            use.setStarttime(s.getStartDateTime());
+            use.setEndtime(s.getEndDateTime());
+            use.setUpdateTime(s.getResolution().getValue());
+            ArrayList<Float> floats = new ArrayList<>();
+            for (Observation o:s.getArray()){
+                floats.add(o.getValue());
+            }
+            use.setUsearray(floats);
         }
 
     }
@@ -62,4 +64,19 @@ public class Combine_Esl_Sdat {
         }
     }
 
+    public ArrayList<Absolute> getAbsolutelist() {
+        return absolutelist;
+    }
+
+    public void setAbsolutelist(ArrayList<Absolute> absolutelist) {
+        this.absolutelist = absolutelist;
+    }
+
+    public ArrayList<Use> getUselist() {
+        return uselist;
+    }
+
+    public void setUselist(ArrayList<Use> uselist) {
+        this.uselist = uselist;
+    }
 }

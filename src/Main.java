@@ -12,5 +12,7 @@ public class Main {
         ArrayList<Esl> eslarray = eslreader.getOutput();
         ArrayList<Sdat> sdatarray = sdatreader.getOutput();
         Combine_Esl_Sdat combine = new Combine_Esl_Sdat(eslarray, sdatarray);
+        ArrayList<Absolute> absolutes = combine.getAbsolutelist();
+        ArrayList<Use> uses = combine.getUselist();
     }
 }
