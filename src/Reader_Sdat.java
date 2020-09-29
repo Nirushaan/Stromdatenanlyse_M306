@@ -24,32 +24,53 @@ class Reader_Sdat {
             Document doc = builder.parse(f);
             Sdat sdat = new Sdat();
             //Get Document ID
-            NodeList idlist = doc.getElementsByTagName("DocumentID");
+            NodeList idlist = doc.getElementsByTagName("rsm:DocumentID");
             Node id = idlist.item(0);
             Element idelement = (Element) id;
-            sdat.setDocumentID(idelement.getAttribute("text"));
+            sdat.setDocumentID(idelement.getTextContent());
             //Get Start- Enddate
-            NodeList intervallist = doc.getElementsByTagName("Interval");
+            NodeList intervallist = doc.getElementsByTagName("rsm:Interval");
             Node interval = intervallist.item(0);
             Element intervalelement = (Element) interval;
-            Element start = (Element) (intervalelement).getElementsByTagName("StartDateTime").item(0);
-            Element end = (Element) (intervalelement).getElementsByTagName("EndDateTime").item(0);
-            sdat.setStartDateTime(start.getAttribute("text"));
-            sdat.setEndDateTime(end.getAttribute("text"));
-            // Get Resolution value
+            Element start = (Element) (intervalelement).getElementsByTagName("rsm:StartDateTime").item(0);
+            Element end = (Element) (intervalelement).getElementsByTagName("rsm:EndDateTime").item(0);
+            sdat.setStartDateTime(start.getTextContent());
+            sdat.setEndDateTime(end.getTextContent());
+            // Get Resolution value + unit
             Resolution resolution = new Resolution();
-            NodeList resolist = doc.getElementsByTagName("Resolution");
+            NodeList resolist = doc.getElementsByTagName("rsm:Resolution");
             Node resoNode = resolist.item(0);
             Element resoElement = (Element) resoNode;
-            System.out.println(resoElement.getAttribute("text"));
-            resolution.setValue(Integer.parseInt(resoElement.getAttribute("text")));
-            resolution.setUnit(resoElement.getAttribute("text"));
+            String resoString = resoElement.getTextContent();
+            String numbers = resoString.replaceAll("\\D+","");
+            resolution.setValue(Integer.parseInt(numbers));
+            String unit = resoString.replaceAll("[^A-Za-z]+","");
+            resolution.setUnit(unit);
+            sdat.setResolution(resolution);
+            // Get Observation
 
+            ArrayList<Observation> list = new ArrayList<>();
+            NodeList oblist = doc.getElementsByTagName("rsm:Observation");
+            for (int i = 0; i < oblist.getLength(); i++){
+                Observation observation = new Observation();
+                Node nodeob = oblist.item(i);
+                NodeList childlist = nodeob.getChildNodes();
+                for (int j = 0; i < 2; i++){
+                    Node childnode = childlist.item(j);
+                    if (j == 0){
+                        Node sequence = childlist.item(j);
+                        System.out.println(sequence.getTextContent());
+                    } else {
 
+                    }
+
+                }
+                //observation.setSequence(Integer.parseInt());
+
+            }
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
-        //Sorts Objects in array
     }
 
 
