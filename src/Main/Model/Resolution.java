@@ -1,3 +1,7 @@
+package Main.Model;
+
+import Main.Main;
+
 public class Resolution {
     private String unit;
     private Integer value;
