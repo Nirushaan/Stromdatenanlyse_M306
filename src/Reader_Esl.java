@@ -63,7 +63,7 @@ public class Reader_Esl {
     }
 
 
-    void readAllFiles(){
+    public void readAllFiles(){
         try {
             String[] fileNames =
                     Files.list(Paths.get(".\\bin\\ESL-Files")).filter(
