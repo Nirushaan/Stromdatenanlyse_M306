@@ -1,3 +1,5 @@
+package Model;
+
 public class Esl_values {
     private String obis;
     private Float value;

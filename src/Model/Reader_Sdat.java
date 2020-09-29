@@ -1,3 +1,5 @@
+package Model;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-class Reader_Sdat {
+public class Reader_Sdat {
     private ArrayList<Sdat> output = new ArrayList<>();
 
     private void readFile(File f) {
@@ -35,7 +37,7 @@ class Reader_Sdat {
             Element end = (Element) (intervalelement).getElementsByTagName("rsm:EndDateTime").item(0);
             sdat.setStartDateTime(start.getTextContent());
             sdat.setEndDateTime(end.getTextContent());
-            // Get Resolution value + unit
+            // Get Model.Resolution value + unit
             Resolution resolution = new Resolution();
             NodeList resolist = doc.getElementsByTagName("rsm:Resolution");
             Node resoNode = resolist.item(0);
@@ -46,10 +48,10 @@ class Reader_Sdat {
             String unit = resoString.replaceAll("[^A-Za-z]+","");
             resolution.setUnit(unit);
             sdat.setResolution(resolution);
-            // Get Observation
+            // Get Model.Observation
 
             ArrayList<Observation> list = new ArrayList<>();
-            NodeList oblist = doc.getElementsByTagName("rsm:Observation");
+            NodeList oblist = doc.getElementsByTagName("rsm:Model.Observation");
             for (int i = 0; i < oblist.getLength(); i++){
                 Observation observation = new Observation();
                 Node nodeob = oblist.item(i);
@@ -69,7 +71,7 @@ class Reader_Sdat {
 
 
 
-    void readAllFiles() {
+    public void readAllFiles() {
         try {
             String[] fileNames =
                     Files.list(Paths.get(".\\bin\\SDAT-Files")).filter(

@@ -1,3 +1,5 @@
+package Model;
+
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -79,7 +81,7 @@ public class Reader_Esl {
         }
     }
 
-    ArrayList<Esl> getOutput() {
+    public ArrayList<Esl> getOutput() {
         return output;
     }
 

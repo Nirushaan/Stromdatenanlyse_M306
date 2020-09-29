@@ -1,3 +1,5 @@
+package Model;
+
 public class Observation {
     private Integer sequence;
     private Float value;

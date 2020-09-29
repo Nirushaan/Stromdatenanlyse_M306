@@ -1,3 +1,5 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Sdat {
@@ -7,19 +9,19 @@ public class Sdat {
     private Resolution resolution;
     private ArrayList<Observation> array;
 
-    public String getDocumentID() {
+    String getDocumentID() {
         return documentID;
     }
 
-    public void setDocumentID(String documentID) {
+    void setDocumentID(String documentID) {
         this.documentID = documentID;
     }
 
-    public String getStartDateTime() {
+    String getStartDateTime() {
         return startDateTime;
     }
 
-    public void setStartDateTime(String startDateTime) {
+    void setStartDateTime(String startDateTime) {
         this.startDateTime = startDateTime;
     }
 
@@ -27,7 +29,7 @@ public class Sdat {
         return endDateTime;
     }
 
-    public void setEndDateTime(String endDateTime) {
+    void setEndDateTime(String endDateTime) {
         this.endDateTime = endDateTime;
     }
 
@@ -43,7 +45,7 @@ public class Sdat {
         return array;
     }
 
-    public void setArray(ArrayList<Observation> array) {
+    void setArray(ArrayList<Observation> array) {
         this.array = array;
     }
 }

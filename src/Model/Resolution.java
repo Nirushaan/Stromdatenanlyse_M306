@@ -1,3 +1,5 @@
+package Model;
+
 public class Resolution {
     private String unit;
     private Integer value;

@@ -1,14 +1,16 @@
+package Model;
+
 import java.util.ArrayList;
 
 public class Esl {
     private String timePeriod;
     private ArrayList<Esl_values> array;
 
-    public String getTimePeriod() {
+    String getTimePeriod() {
         return timePeriod;
     }
 
-    public void setTimePeriod(String timePeriod) {
+    void setTimePeriod(String timePeriod) {
         this.timePeriod = timePeriod;
     }
 
@@ -16,7 +18,7 @@ public class Esl {
         return array;
     }
 
-    public void setArray(ArrayList<Esl_values> array) {
+    void setArray(ArrayList<Esl_values> array) {
         this.array = array;
     }
 }
