@@ -12,7 +12,12 @@ public class Combine_Esl_Sdat {
         splitDocuments(this.sdatlist);
         sortDocuments(id735list);
         sortDocuments(id742list);
-
+        removeRedundance(id742list);
+        removeRedundance(id735list);
+        for (Sdat s:id742list
+             ) {
+            System.out.println(s.getStartDateTime());
+        }
 
     }
 
@@ -27,5 +32,14 @@ public class Combine_Esl_Sdat {
     }
     private void sortDocuments(ArrayList<Sdat> list){
         list.sort((o1, o2) -> o1.getStartDateTime().compareToIgnoreCase(o2.getStartDateTime()));
+    }
+    private void removeRedundance(ArrayList<Sdat> list){
+        //Removes duplicate start Dates
+        for(int i = 0; i < list.size()-1; i++){
+            if (list.get(i).getStartDateTime().equals(list.get(i + 1).getStartDateTime())){
+                list.remove(i+1);
+                i--;
+            }
+        }
     }
 }
