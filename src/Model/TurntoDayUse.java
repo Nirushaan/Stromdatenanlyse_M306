@@ -8,9 +8,10 @@ public class TurntoDayUse {
 
     public ArrayList<Use> turn(ArrayList<Use> uses){
         ArrayList<Use> dayUses = new ArrayList<>();
-        for (Use u:uses) {
-                Instant startdate = u.getStarttime();
-                Instant potentialenddate = startdate.plus(15,ChronoUnit.MINUTES);
+        Instant startdate = uses.get(0).getStarttime();
+        Instant potentialenddate = uses.get(0).getStarttime();
+        /*for (Use u:uses) {
+
             int i = 0;
                 while (!(u.getEndtime() == potentialenddate)) {
                     while (isSameDayUsingInstant(startdate, potentialenddate)) {
@@ -45,7 +46,7 @@ public class TurntoDayUse {
                     dayUses.add(newuse);
                     i = 0;
                 }
-
+        */
         }
         return dayUses;
     }
