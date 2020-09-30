@@ -29,6 +29,7 @@ public class Combine_Esl_Sdat {
             absolutelist.add(absolute2);
         }
         //Create Use Data
+
         for (Sdat s:id742list){
             Use use = new Use();
             use.setID("ID742");
@@ -41,7 +42,14 @@ public class Combine_Esl_Sdat {
             }
             use.setUsearray(floats);
             id742uselist.add(use);
+
         }
+       /*for(int i = 0; i < id742uselist.size()-1; i++){
+            if (!(id742uselist.get(i).getStarttime().equals(id742uselist.get(i + 1).getEndtime()))){
+                id742uselist.remove(i+1);
+                i--;
+            }
+        }*/
         for (Sdat s:id735list){
             Use use = new Use();
             use.setID("ID735");
@@ -55,6 +63,12 @@ public class Combine_Esl_Sdat {
             use.setUsearray(floats);
             id735uselist.add(use);
         }
+       /*for(int i = 0; i < id735uselist.size()-1; i++){
+            if (!(id735uselist.get(i).getStarttime().equals(id735uselist.get(i + 1).getEndtime()))){
+                id735uselist.remove(i+1);
+                i--;
+            }
+        }*/
     }
 
     private void splitDocuments(ArrayList<Sdat> list){

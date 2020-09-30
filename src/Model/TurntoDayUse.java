@@ -11,27 +11,39 @@ public class TurntoDayUse {
         for (Use u:uses) {
                 Instant startdate = u.getStarttime();
                 Instant potentialenddate = startdate.plus(15,ChronoUnit.MINUTES);
-                while (!isSameDayUsingInstant(u.getEndtime(), potentialenddate)) {
-                    int i=0;
-
-
+            int i = 0;
+                while (!(u.getEndtime() == potentialenddate)) {
                     while (isSameDayUsingInstant(startdate, potentialenddate)) {
                         potentialenddate = potentialenddate.plus(15, ChronoUnit.MINUTES);
                         i++;
+
+
+                        System.out.println(potentialenddate);
+
                     }
+                    System.out.println(potentialenddate);
                     Use newuse = new Use();
+
                     newuse.setStarttime(startdate);
                     newuse.setID(u.getID());
                     newuse.setUpdateTime(u.getUpdateTime());
                     newuse.setEndtime(potentialenddate);
+                    System.out.println(potentialenddate);
+
                     ArrayList<Float> usearray = new ArrayList<>();
-                    for (i = i; i >= 0; i--) {
-                        usearray.add(0, u.getUsearray().get(i));
-                        u.getUsearray().remove(i);
+                    System.out.println(u.getUsearray());
+                    for (int j = 0; j <= i; j++) {
+                        System.out.println(j);
+                        usearray.add(0, u.getUsearray().get(0));
+                        System.out.println(j);
+                        System.out.println(u.getUsearray().get(0));
+                        u.getUsearray().remove(0);
                     }
+                    System.out.println(potentialenddate);
                     newuse.setUsearray(usearray);
                     startdate = potentialenddate;
                     dayUses.add(newuse);
+                    i = 0;
                 }
 
         }

@@ -42,7 +42,6 @@ public class Use {
         this.updateTime = updateTime;
     }
 
-
     public ArrayList<Float> getUsearray() {
         return usearray;
     }

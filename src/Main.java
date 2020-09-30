@@ -9,7 +9,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,9 +18,10 @@ import java.util.ArrayList;
 
 public class Main extends Application{
 
+
     @Override
     public void start(Stage primaryStage) {
-        int i = 1;
+
         Reader_Esl eslreader = new Reader_Esl();
         eslreader.readAllFiles();
         Reader_Sdat sdatreader = new Reader_Sdat();
@@ -32,10 +32,9 @@ public class Main extends Application{
         ArrayList<Absolute> absolutes = combine.getAbsolutelist();
         ArrayList<Use> uses742 = combine.getId742uselist();
         ArrayList<Use> uses735 = combine.getId735uselist();
-        TurntoDayUse day = new TurntoDayUse();
-        ArrayList<Use> newuses742 = day.turn(uses742);
-        ArrayList<Use> newuses735 = day.turn(uses735);
-
+        //TurntoDayUse day = new TurntoDayUse();
+        //ArrayList<Use> newuses742 = day.turn(uses742);
+        //ArrayList<Use> newuses735 = day.turn(uses735);
 
         String[] idlist = {"ID742","ID735"};
         primaryStage.setTitle("Datenleser");
@@ -54,8 +53,7 @@ public class Main extends Application{
             @Override
             public void handle(ActionEvent actionEvent) {
                 int x = Integer.parseInt(daynumber.getText());
-                System.out.println(newuses742.size());
-                primaryStage.setScene(verbrauchscene(newuses742,newuses735,idlist,x));
+                primaryStage.setScene(verbrauchscene(uses742,uses735,idlist,x));
             }
         });
         VBox pane = new VBox();
