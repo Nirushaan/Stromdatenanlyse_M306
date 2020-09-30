@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04295261-0218-4e15-916e-a1e899342c13" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/StargGui.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="04295261-0218-4e15-916e-a1e899342c13" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,12 +17,6 @@
         <option value="FxmlFile" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>system</find>
-      <find>outp</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,6 +69,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -102,6 +102,7 @@
       <workItem from="1601295321416" duration="9812000" />
       <workItem from="1601315544000" duration="4986000" />
       <workItem from="1601362776721" duration="13039000" />
+      <workItem from="1601474191485" duration="401000" />
     </task>
     <task id="LOCAL-00001" summary="Create project">
       <created>1601279477535</created>
@@ -194,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601450401070</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fxml for startgui">
+      <created>1601474389715</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1601474389715</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +222,8 @@
     <MESSAGE value="Finished Sdat Reader" />
     <MESSAGE value="Beginning Combine_esl_sdat" />
     <MESSAGE value="csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="csv" />
+    <MESSAGE value="fxml for startgui" />
+    <option name="LAST_COMMIT_MESSAGE" value="fxml for startgui" />
   </component>
   <component name="WindowStateProjectService">
     <state x="229" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601467852720">
