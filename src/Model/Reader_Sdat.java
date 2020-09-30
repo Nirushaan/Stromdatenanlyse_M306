@@ -51,7 +51,7 @@ public class Reader_Sdat {
             // Get Model.Observation
 
             ArrayList<Observation> list = new ArrayList<>();
-            NodeList oblist = doc.getElementsByTagName("rsm:Model.Observation");
+            NodeList oblist = doc.getElementsByTagName("rsm:Observation");
             for (int i = 0; i < oblist.getLength(); i++){
                 Observation observation = new Observation();
                 Node nodeob = oblist.item(i);

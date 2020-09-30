@@ -1,10 +1,24 @@
 import Model.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
-public class Main {
+public class Main extends Application{
 
-    public static void main(String[] args) {
+    @Override
+    public void start(Stage primaryStage) {
         Reader_Esl eslreader = new Reader_Esl();
         eslreader.readAllFiles();
         Reader_Sdat sdatreader = new Reader_Sdat();
@@ -13,6 +27,89 @@ public class Main {
         ArrayList<Sdat> sdatarray = sdatreader.getOutput();
         Combine_Esl_Sdat combine = new Combine_Esl_Sdat(eslarray, sdatarray);
         ArrayList<Absolute> absolutes = combine.getAbsolutelist();
-        ArrayList<Use> uses = combine.getUselist();
+        ArrayList<Use> uses742 = combine.getId742uselist();
+        ArrayList<Use> uses735 = combine.getId735uselist();
+
+
+        String[] idlist = {"ID742","ID735"};
+        primaryStage.setTitle("Datenleser");
+        Button zahl = new Button("Zählerstand");
+        zahl.setOnAction(actionEvent -> primaryStage.setScene(zaehlerscene(absolutes,idlist)));
+        Button verbrauch = new Button("Verbrauchzahlen");
+        verbrauch.setOnAction(actionEvent -> primaryStage.setScene(verbrauchscene(uses742,uses735,idlist)));
+        Pane pane = new Pane();
+        pane.getChildren().addAll(verbrauch);
+        Scene primaryscene = new Scene(pane);
+        primaryStage.setScene(primaryscene);
+        primaryStage.sizeToScene();
+        primaryStage.show();
+    }
+    private Scene zaehlerscene(ArrayList<Absolute> absolutes,String[] idlist){
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        LineChart<String,Number> bc =
+                new LineChart<>(xAxis, yAxis);
+        bc.setTitle("Absolute Zählerstand");
+        xAxis.setLabel("Zählerstand");
+        yAxis.setLabel("Wert");
+        for (String id:idlist
+             ) {
+            addSeriestoZaehler(bc,absolutes,id);
+        }
+        return new Scene(bc,1600,800);
+    }
+    private void addSeriestoZaehler(LineChart<String,Number> bc, ArrayList<Absolute> absolutes, String id){
+        XYChart.Series high = new XYChart.Series<>();
+        high.setName(id + " Hochtarif");
+        XYChart.Series low = new XYChart.Series<>();
+        low.setName(id + " Niedertarif");
+        for (Absolute a:absolutes) {
+            if (a.getID().equals(id)){
+                String date = a.getMonth() + "-" + a.getYear();
+                high.getData().add(new XYChart.Data<>(date, a.getDaypower()));
+                low.getData().add(new XYChart.Data<>(date, a.getNightpower()));
+            }
+        }
+        bc.getData().addAll(high,low);
+    }
+    private Scene verbrauchscene(ArrayList<Use> uses742,ArrayList<Use> uses735,String[] idlist){
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        LineChart<String,Number> bc =
+                new LineChart<>(xAxis, yAxis);
+        bc.setTitle("Relative Verbrauch");
+        xAxis.setLabel("Verbrauch");
+        yAxis.setLabel("Wert");
+        for (String id:idlist
+        ) {
+            addSeriestoVerbrauch(bc,uses742,uses735,id);
+        }
+        return new Scene(bc,1600,800);
+    }
+    private void addSeriestoVerbrauch(LineChart<String,Number> bc,ArrayList<Use> uses742,ArrayList<Use> uses735, String id) {
+
+        int x = 30;
+        Use u742 = uses742.get(x);
+        Use u735 = uses735.get(x);
+        XYChart.Series use742 = new XYChart.Series<>();
+        use742.setName("ID742 Verbrauchszahlen");
+        XYChart.Series use735 = new XYChart.Series<>();
+        use735.setName("ID742 Verbrauchszahlen");
+
+
+        int i = 0;
+        for (Float f:u742.getUsearray()) {
+            Instant time = u742.getStarttime().plus(u742.getUpdateTime()*i,ChronoUnit.MINUTES);
+            use742.getData().add(new XYChart.Data<>(time.toString(), f));
+            i++;
+        }
+        i = 0;
+        for (Float f:u735.getUsearray()) {
+            Instant time = u735.getStarttime().plus(u735.getUpdateTime()*i,ChronoUnit.MINUTES);
+            use735.getData().add(new XYChart.Data<>(time.toString(), f));
+            i++;
+        }
+
+        bc.getData().addAll(use742,use735);
     }
 }

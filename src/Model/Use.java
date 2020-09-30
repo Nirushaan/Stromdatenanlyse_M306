@@ -1,11 +1,12 @@
 package Model;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class Use {
     private String ID;
-    private String Starttime;
-    private String Endtime;
+    private Instant Starttime;
+    private Instant Endtime;
     private Integer updateTime;
     private ArrayList<Float> usearray;
 
@@ -17,19 +18,19 @@ public class Use {
         this.ID = ID;
     }
 
-    public String getStarttime() {
+    public Instant getStarttime() {
         return Starttime;
     }
 
-    public void setStarttime(String starttime) {
+    void setStarttime(Instant starttime) {
         Starttime = starttime;
     }
 
-    public String getEndtime() {
+    public Instant getEndtime() {
         return Endtime;
     }
 
-    public void setEndtime(String endtime) {
+    void setEndtime(Instant endtime) {
         Endtime = endtime;
     }
 
@@ -37,15 +38,16 @@ public class Use {
         return updateTime;
     }
 
-    public void setUpdateTime(Integer updateTime) {
+    void setUpdateTime(Integer updateTime) {
         this.updateTime = updateTime;
     }
+
 
     public ArrayList<Float> getUsearray() {
         return usearray;
     }
 
-    public void setUsearray(ArrayList<Float> usearray) {
+    void setUsearray(ArrayList<Float> usearray) {
         this.usearray = usearray;
     }
 }
