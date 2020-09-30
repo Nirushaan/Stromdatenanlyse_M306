@@ -19,6 +19,7 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) {
+        int i = 1;
         Reader_Esl eslreader = new Reader_Esl();
         eslreader.readAllFiles();
         Reader_Sdat sdatreader = new Reader_Sdat();
@@ -29,14 +30,29 @@ public class Main extends Application{
         ArrayList<Absolute> absolutes = combine.getAbsolutelist();
         ArrayList<Use> uses742 = combine.getId742uselist();
         ArrayList<Use> uses735 = combine.getId735uselist();
+        TurntoDayUse day = new TurntoDayUse();
+        ArrayList<Use> newuses742 = day.turn(uses742);
+        ArrayList<Use> newuses735 = day.turn(uses735);
 
 
         String[] idlist = {"ID742","ID735"};
         primaryStage.setTitle("Datenleser");
         Button zahl = new Button("Zählerstand");
-        zahl.setOnAction(actionEvent -> primaryStage.setScene(zaehlerscene(absolutes,idlist)));
+        zahl.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                primaryStage.setScene(zaehlerscene(absolutes,idlist));
+            }
+        });
         Button verbrauch = new Button("Verbrauchzahlen");
-        verbrauch.setOnAction(actionEvent -> primaryStage.setScene(verbrauchscene(uses742,uses735,idlist)));
+        verbrauch.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                int x = 2;
+                System.out.println(newuses742.size());
+                primaryStage.setScene(verbrauchscene(newuses742,newuses735,idlist,x));
+            }
+        });
         Pane pane = new Pane();
         pane.getChildren().addAll(verbrauch);
         Scene primaryscene = new Scene(pane);
@@ -72,7 +88,7 @@ public class Main extends Application{
         }
         bc.getData().addAll(high,low);
     }
-    private Scene verbrauchscene(ArrayList<Use> uses742,ArrayList<Use> uses735,String[] idlist){
+    private Scene verbrauchscene(ArrayList<Use> uses742,ArrayList<Use> uses735,String[] idlist,int x){
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
@@ -82,19 +98,19 @@ public class Main extends Application{
         yAxis.setLabel("Wert");
         for (String id:idlist
         ) {
-            addSeriestoVerbrauch(bc,uses742,uses735,id);
+            addSeriestoVerbrauch(bc,uses742,uses735,id,x);
         }
         return new Scene(bc,1600,800);
     }
-    private void addSeriestoVerbrauch(LineChart<String,Number> bc,ArrayList<Use> uses742,ArrayList<Use> uses735, String id) {
+    private void addSeriestoVerbrauch(LineChart<String,Number> bc,ArrayList<Use> uses742,ArrayList<Use> uses735, String id, int x) {
 
-        int x = 30;
+
         Use u742 = uses742.get(x);
         Use u735 = uses735.get(x);
         XYChart.Series use742 = new XYChart.Series<>();
         use742.setName("ID742 Verbrauchszahlen");
         XYChart.Series use735 = new XYChart.Series<>();
-        use735.setName("ID742 Verbrauchszahlen");
+        use735.setName("ID735 Verbrauchszahlen");
 
 
         int i = 0;

@@ -32,7 +32,6 @@ public class Combine_Esl_Sdat {
         for (Sdat s:id742list){
             Use use = new Use();
             use.setID("ID742");
-
             use.setStarttime(Instant.parse(s.getStartDateTime()));
             use.setEndtime(Instant.parse(s.getEndDateTime()));
             use.setUpdateTime(s.getResolution().getValue());
