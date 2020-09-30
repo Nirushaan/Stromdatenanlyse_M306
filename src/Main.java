@@ -8,7 +8,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.time.Instant;
@@ -44,17 +46,20 @@ public class Main extends Application{
                 primaryStage.setScene(zaehlerscene(absolutes,idlist));
             }
         });
+        TextField daynumber = new TextField();
+        daynumber.setPromptText("Verbrauchstagzahl Eingeben");
+
         Button verbrauch = new Button("Verbrauchzahlen");
         verbrauch.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                int x = 2;
+                int x = Integer.parseInt(daynumber.getText());
                 System.out.println(newuses742.size());
                 primaryStage.setScene(verbrauchscene(newuses742,newuses735,idlist,x));
             }
         });
-        Pane pane = new Pane();
-        pane.getChildren().addAll(verbrauch);
+        VBox pane = new VBox();
+        pane.getChildren().addAll(zahl,daynumber,verbrauch);
         Scene primaryscene = new Scene(pane);
         primaryStage.setScene(primaryscene);
         primaryStage.sizeToScene();
