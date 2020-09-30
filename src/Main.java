@@ -18,10 +18,9 @@ import java.util.ArrayList;
 
 public class Main extends Application{
 
-
     @Override
     public void start(Stage primaryStage) {
-
+        int i = 1;
         Reader_Esl eslreader = new Reader_Esl();
         eslreader.readAllFiles();
         Reader_Sdat sdatreader = new Reader_Sdat();
@@ -32,9 +31,10 @@ public class Main extends Application{
         ArrayList<Absolute> absolutes = combine.getAbsolutelist();
         ArrayList<Use> uses742 = combine.getId742uselist();
         ArrayList<Use> uses735 = combine.getId735uselist();
-        //TurntoDayUse day = new TurntoDayUse();
-        //ArrayList<Use> newuses742 = day.turn(uses742);
-        //ArrayList<Use> newuses735 = day.turn(uses735);
+        TurntoDayUse day = new TurntoDayUse();
+        ArrayList<Use> newuses742 = day.turn(uses742);
+        ArrayList<Use> newuses735 = day.turn(uses735);
+
 
         String[] idlist = {"ID742","ID735"};
         primaryStage.setTitle("Datenleser");
@@ -53,7 +53,8 @@ public class Main extends Application{
             @Override
             public void handle(ActionEvent actionEvent) {
                 int x = Integer.parseInt(daynumber.getText());
-                primaryStage.setScene(verbrauchscene(uses742,uses735,idlist,x));
+
+             primaryStage.setScene(verbrauchscene(newuses742,newuses735,idlist,x));
             }
         });
         VBox pane = new VBox();
@@ -75,7 +76,7 @@ public class Main extends Application{
              ) {
             addSeriestoZaehler(bc,absolutes,id);
         }
-        return new Scene(bc,1600,800);
+        return new Scene(bc,1750,800);
     }
     private void addSeriestoZaehler(LineChart<String,Number> bc, ArrayList<Absolute> absolutes, String id){
         XYChart.Series high = new XYChart.Series<>();
@@ -103,10 +104,9 @@ public class Main extends Application{
         ) {
             addSeriestoVerbrauch(bc,uses742,uses735,id,x);
         }
-        return new Scene(bc,1600,800);
+        return new Scene(bc,1750,800);
     }
     private void addSeriestoVerbrauch(LineChart<String,Number> bc,ArrayList<Use> uses742,ArrayList<Use> uses735, String id, int x) {
-
 
         Use u742 = uses742.get(x);
         Use u735 = uses735.get(x);
@@ -114,7 +114,6 @@ public class Main extends Application{
         use742.setName("ID742 Verbrauchszahlen");
         XYChart.Series use735 = new XYChart.Series<>();
         use735.setName("ID735 Verbrauchszahlen");
-
 
         int i = 0;
         for (Float f:u742.getUsearray()) {

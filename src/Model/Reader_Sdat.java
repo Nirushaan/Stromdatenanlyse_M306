@@ -63,7 +63,6 @@ public class Reader_Sdat {
             }
             sdat.setArray(list);
             output.add(sdat);
-
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }
