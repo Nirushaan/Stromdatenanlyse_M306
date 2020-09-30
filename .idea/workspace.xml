@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c69c3e99-ad6d-4e90-9ab6-6546674f982f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Combine_Esl_Sdat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Combine_Esl_Sdat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Reader_Sdat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Reader_Sdat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TurntoDayUse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TurntoDayUse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Use.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Use.java" afterDir="false" />
-    </list>
+    <list default="true" id="04295261-0218-4e15-916e-a1e899342c13" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,80 +152,61 @@
     <option name="width" value="2794" />
     <option name="height" value="2112" />
   </component>
+  <component name="JupyterTrust" id="fdd5fa7e-dd73-449a-937e-0e8ffc4e064d" />
+  <component name="ProjectId" id="1iEL3BTl4WzLILh0cWCh5NS6XnR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bunzlienergie" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bunzlienergie" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bunzlienergie" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-              <item name="libraries" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bunzlienergie" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bunzlienergie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bunzlienergie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bunzlienergie" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="restartRequiresConfirmation" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Desktop/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Hunter\IdeaProjects\Bunzlienergie\src" />
+      <recent name="C:\Users\Hunter\IdeaProjects\Bunzlienergie" />
+      <recent name="C:\Users\Hunter\IdeaProjects\Bunzlienergie\Bunzlienergie" />
+      <recent name="C:\Users\Hunter\IdeaProjects\Bunzlienergie\Bunzlienergie\bin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Hunter\IdeaProjects\Bunzlienergie\bin" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Bunzlienergie" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\brend\OneDrive\Desktop\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -243,16 +217,93 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="Esl sorted by day">
-      <created>1601467156226</created>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04295261-0218-4e15-916e-a1e899342c13" name="Default Changelist" comment="" />
+      <created>1601278308504</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601278308504</updated>
+      <workItem from="1601278309824" duration="6100000" />
+      <workItem from="1601294737723" duration="517000" />
+      <workItem from="1601295321416" duration="9812000" />
+      <workItem from="1601315544000" duration="4986000" />
+      <workItem from="1601362776721" duration="13039000" />
+      <workItem from="1601474191485" duration="401000" />
+    </task>
+    <task id="LOCAL-00001" summary="Create project">
+      <created>1601279477535</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1601467156226</updated>
+      <updated>1601279477535</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Create project">
+      <created>1601279846435</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1601279846435</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Data files">
+      <created>1601292120890</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1601292120890</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Create Repository">
+      <created>1601294400259</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1601294400259</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adds more Code, absolute path used in readers; to be changed">
+      <created>1601295449904</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601295449904</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Adds more Code to ESL Reader">
+      <created>1601300501279</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601300501279</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Removes Redundances from Esl">
+      <created>1601321233088</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1601321233088</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Adds Sdat Files">
+      <created>1601362999603</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601362999603</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Adds Sdat Files">
+      <created>1601366529608</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601366529608</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Adds Sdat Files">
+      <created>1601368979012</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601368979012</updated>
     </task>
     <task id="LOCAL-00002" summary="Prototype Release">
       <created>1601467546880</created>
