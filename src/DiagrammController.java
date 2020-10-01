@@ -8,6 +8,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -30,7 +31,7 @@ public class DiagrammController{
     @FXML
     private DatePicker date;
     @FXML
-    private TextField text;
+    private Button export;
 
     public DiagrammController() {
         Reader_Esl eslreader = new Reader_Esl();
@@ -112,10 +113,11 @@ public class DiagrammController{
     private void addSeriestoVerbrauch(LineChart<String,Number> bc) {
 
         LocalDate localDate = this.date.getValue();
-        localDate.plus(1,ChronoUnit.DAYS);
+
         System.out.println(localDate);
         System.out.println(Instant.from(localDate.atStartOfDay(ZoneId.systemDefault())));
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        instant = instant.plus(1,ChronoUnit.DAYS);
         Use chosenuse742 = new Use();
         Use chosenuse735 = new Use();
         for (Use u:uses742
