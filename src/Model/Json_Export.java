@@ -12,8 +12,6 @@ import java.util.ArrayList;
 public class Json_Export {
     public void writeDataLineByLine(String filePath, ArrayList<String[]> stringstowrite742, ArrayList<String[]> stringstowrite735)
     {
-
-        File file = new File(filePath);
             JSONArray sensorarray = new JSONArray();
 
             sensorarray.add(createJSONObject(stringstowrite742,"ID742"));
@@ -21,8 +19,6 @@ public class Json_Export {
 
             try (FileWriter fileWriter = new FileWriter(new File (filePath,"ID742_ID735.json"))){
                 String prettystring = sensorarray.toJSONString();
-                //Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                //prettystring = gson.toJson(prettystring);
                 fileWriter.write(prettystring);
                 fileWriter.flush();
 

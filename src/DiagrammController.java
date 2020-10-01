@@ -141,7 +141,7 @@ public class DiagrammController{
         layout.getChildren().add(bc);
         AnchorPane.setLeftAnchor(zuruck, 0d); // distance 0 from right side of
         AnchorPane.setTopAnchor(zuruck, 0d);
-        bc.setMinSize(1500, 800);
+        bc.setMinSize(1500, 1000);
 
         layout.getChildren().add(zuruck);
 
