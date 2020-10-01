@@ -48,8 +48,7 @@ public class Reader_Sdat {
             String unit = resoString.replaceAll("[^A-Za-z]+","");
             resolution.setUnit(unit);
             sdat.setResolution(resolution);
-            // Get Model.Observation
-
+            // Get Observation
             ArrayList<Observation> list = new ArrayList<>();
             NodeList oblist = doc.getElementsByTagName("rsm:Observation");
             for (int i = 0; i < oblist.getLength(); i++){
@@ -63,6 +62,7 @@ public class Reader_Sdat {
             }
             sdat.setArray(list);
             output.add(sdat);
+
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
         }

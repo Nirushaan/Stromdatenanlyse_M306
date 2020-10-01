@@ -5,12 +5,24 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class TurntoDayUse {
+    Use giantuse = new Use();
+
+
+    ArrayList<Timeandpower> timeandpowerslist = new ArrayList<>();
+
+    public ArrayList<Timeandpower> getTimeandpowerslist() {
+        return timeandpowerslist;
+    }
+
+    public void setTimeandpowerslist(ArrayList<Timeandpower> timeandpowerslist) {
+        this.timeandpowerslist = timeandpowerslist;
+    }
 
     public ArrayList<Use> turn(ArrayList<Use> uses) {
+        timeandpowerslist = new ArrayList<>();
         ArrayList<Use> dayUses = new ArrayList<>();
         Instant startdate = uses.get(0).getStarttime();
         Instant enddate = uses.get(0).getEndtime();
-        Use giantuse = new Use();
         giantuse.setStarttime(startdate);
         giantuse.setID(uses.get(0).getID());
         ArrayList<Float> floats = new ArrayList<>();
@@ -30,17 +42,19 @@ public class TurntoDayUse {
         giantuse.setEndtime(enddate);
         giantuse.setUsearray(floats);
         giantuse.setUpdateTime(uses.get(0).getUpdateTime());
-        System.out.println(giantuse.getStarttime());
-        System.out.println(giantuse.getEndtime());
-        System.out.println(giantuse.getUsearray().size());
         startdate = giantuse.getStarttime();
         Instant tempenddate = giantuse.getStarttime();
         while (isSameMinuteUsingInstant(enddate, tempenddate)){
+            ArrayList<Timeandpower> timeandpowers = new ArrayList<>();
             int i = 0;
             while (isSameDayUsingInstant(startdate, tempenddate) && isSameMinuteUsingInstant(enddate, tempenddate)) {
+                Timeandpower timeandpower = new Timeandpower();
+                timeandpower.setTime(tempenddate);
+                timeandpowers.add(timeandpower);
                 tempenddate = tempenddate.plus(15, ChronoUnit.MINUTES);
                 i++;
             }
+
 
             Use newuse = new Use();
             newuse.setStarttime(startdate);
@@ -49,10 +63,14 @@ public class TurntoDayUse {
 
             ArrayList<Float> newfloatarray = new ArrayList<>();
             for (int j = 0; j < i; j++) {
-
+                timeandpowers.get(j).setPower(giantuse.getUsearray().get(0));
                 newfloatarray.add(giantuse.getUsearray().get(0));
                 giantuse.getUsearray().remove(0);
 
+            }
+            for (Timeandpower t:timeandpowers
+                 ) {
+                timeandpowerslist.add(t);
             }
             newuse.setUsearray(newfloatarray);
             newuse.setUpdateTime(giantuse.getUpdateTime());
