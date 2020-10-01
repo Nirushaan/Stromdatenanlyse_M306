@@ -27,11 +27,11 @@ public class TurntoDayUse {
         giantuse.setID(uses.get(0).getID());
         ArrayList<Float> floats = new ArrayList<>();
         Use latestuse = uses.get(0);
-        while (containsDate(uses, enddate)) {
+        while (CompareDates.containsDate(uses, enddate)) {
             floats.addAll(latestuse.getUsearray());
             for (Use u : uses
             ) {
-                if (isSameDayUsingInstant(u.getStarttime(), enddate)) {
+                if (CompareDates.isSameDayUsingInstant(u.getStarttime(), enddate)) {
                     latestuse = u;
                     enddate = latestuse.getEndtime();
                     break;
@@ -44,10 +44,10 @@ public class TurntoDayUse {
         giantuse.setUpdateTime(uses.get(0).getUpdateTime());
         startdate = giantuse.getStarttime();
         Instant tempenddate = giantuse.getStarttime();
-        while (isSameMinuteUsingInstant(enddate, tempenddate)){
+        while (CompareDates.isSameMinuteUsingInstant(enddate, tempenddate)){
             ArrayList<Timeandpower> timeandpowers = new ArrayList<>();
             int i = 0;
-            while (isSameDayUsingInstant(startdate, tempenddate) && isSameMinuteUsingInstant(enddate, tempenddate)) {
+            while (CompareDates.isSameDayUsingInstant(startdate, tempenddate) && CompareDates.isSameMinuteUsingInstant(enddate, tempenddate)) {
                 Timeandpower timeandpower = new Timeandpower();
                 timeandpower.setTime(tempenddate);
                 timeandpowers.add(timeandpower);
@@ -80,18 +80,6 @@ public class TurntoDayUse {
         return dayUses;
     }
 
-    private static boolean isSameDayUsingInstant (Instant date1, Instant date2){
-        Instant instant1 = date1.truncatedTo(ChronoUnit.DAYS);
-        Instant instant2 = date2.truncatedTo(ChronoUnit.DAYS);
-        return instant1.equals(instant2);
-    }
-    private static boolean isSameMinuteUsingInstant (Instant date1, Instant date2){
-        Instant instant1 = date1.truncatedTo(ChronoUnit.MINUTES);
-        Instant instant2 = date2.truncatedTo(ChronoUnit.MINUTES);
-        return !instant1.equals(instant2);
-    }
-    private boolean containsDate(ArrayList<Use> list, Instant datetofind){
-        return list.stream().map(Use::getStarttime).anyMatch(datetofind::equals);
-    }
+
 
 }

@@ -41,7 +41,7 @@ public class Csv_Export {
                 Timeandpower propertime = new Timeandpower();
                     for (Timeandpower t : timeandpowerlist
                     ) {
-                        if (isSameMinuteUsingInstant(t.getTime(), instant)) {
+                        if (CompareDates.isSameMinuteUsingInstant(t.getTime(), instant)) {
                             propertime = t;
                             break;
                         }
@@ -54,7 +54,7 @@ public class Csv_Export {
                 position--;
                 for (; position >= 0 ; position--) {
                     instant = instant.minus(15,ChronoUnit.MINUTES);
-                    String utctime = toStringUnixTime(timeandpowerlist.get(position).getTime());
+                    String utctime = CompareDates.toStringUnixTime(timeandpowerlist.get(position).getTime());
                     String absolutevalue = timeandpowerlist.get(position).getPower().toString();
                     String[] stringtowrite = {utctime,absolutevalue};
                     stringstowrite.add(stringtowrite);
@@ -76,20 +76,7 @@ public class Csv_Export {
         }
 
     }
-    private static boolean isSameMinuteUsingInstant (Instant date1, Instant date2){
-        Instant instant1 = date1.truncatedTo(ChronoUnit.MINUTES);
-        Instant instant2 = date2.truncatedTo(ChronoUnit.MINUTES);
-        return instant1.equals(instant2);
-    }
-    private boolean containsDate(ArrayList<Timeandpower> list, Instant datetofind){
-        return list.stream().map(Timeandpower::getTime).anyMatch(datetofind::equals);
-    }
 
-    public static String toStringUnixTime(Instant i){
-        BigDecimal nanos = BigDecimal.valueOf(i.getNano(), 9);
-        BigDecimal seconds = BigDecimal.valueOf(i.getEpochSecond());
-        BigDecimal total = seconds.add(nanos);
-        DecimalFormat df = new DecimalFormat("#.#########");
-        return df.format(total);
-    }
+
+
 }

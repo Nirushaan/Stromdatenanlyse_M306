@@ -1,14 +1,22 @@
 import Model.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
@@ -19,7 +27,12 @@ public class DiagrammController{
     ArrayList<Timeandpower> timeandpowers742 = new ArrayList<>();
     ArrayList<Timeandpower> timeandpowers735 = new ArrayList<>();
     String[] idlist = {"ID742","ID735"};
-    public void initializeData(){
+    @FXML
+    private DatePicker date;
+    @FXML
+    private TextField text;
+
+    public DiagrammController() {
         Reader_Esl eslreader = new Reader_Esl();
         eslreader.readAllFiles();
         Reader_Sdat sdatreader = new Reader_Sdat();
@@ -37,18 +50,22 @@ public class DiagrammController{
         ArrayList<Timeandpower> timepower735 = day.getTimeandpowerslist();
 
         this.absolutes = absolutes;
-        this.uses735 = uses735;
-        this.uses742 = uses742;
+        this.uses735 = newuses735;
+        this.uses742 = newuses742;
         this.timeandpowers735 = timepower735;
         this.timeandpowers742 = timepower742;
     }
 
-    public void zustanddiagramm(ActionEvent actionEvent) {
-        zaehlerscene();
+    public void zustanddiagramm(ActionEvent actionEvent) throws IOException {
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(zaehlerscene());
+        window.show();
     }
 
     public void verbrauchsiagramm(ActionEvent actionEvent) {
-        verbrauchscene(i);
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        window.setScene(verbrauchscene());
+        window.show();
     }
 
     private Scene zaehlerscene(){
@@ -56,8 +73,8 @@ public class DiagrammController{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-        bc.setTitle("Absoluter Z?hlerstand");
-        xAxis.setLabel("Z?hlerstand");
+        bc.setTitle("Absoluter Zahlerstand");
+        xAxis.setLabel("Zahlerstand");
         yAxis.setLabel("Wert");
         for (String id:idlist
         ) {
@@ -88,36 +105,56 @@ public class DiagrammController{
         bc.setTitle("Relativer Verbrauch");
         xAxis.setLabel("Verbrauch");
         yAxis.setLabel("Wert");
-        for (String id:idlist
-        ) {
-            addSeriestoVerbrauch(bc,id);
-        }
+        addSeriestoVerbrauch(bc);
         return new Scene(bc,1750,800);
     }
 
-    private void addSeriestoVerbrauch(LineChart<String,Number> bc, String id) {
+    private void addSeriestoVerbrauch(LineChart<String,Number> bc) {
 
-        Use u742 = uses742.get(x);
-        Use u735 = uses735.get(x);
+        LocalDate localDate = this.date.getValue();
+        localDate.plus(1,ChronoUnit.DAYS);
+        System.out.println(localDate);
+        System.out.println(Instant.from(localDate.atStartOfDay(ZoneId.systemDefault())));
+        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        Use chosenuse742 = new Use();
+        Use chosenuse735 = new Use();
+        for (Use u:uses742
+             ) {
+            if (CompareDates.isSameDayUsingInstant(u.getStarttime(),instant)){
+                chosenuse742 = u;
+                break;
+            }
+        }
+        for (Use u:uses735
+             ) {
+            if (CompareDates.isSameDayUsingInstant(u.getStarttime(),instant)){
+                chosenuse735 = u;
+                break;
+            }
+        }
+        System.out.println(chosenuse735.getStarttime());
+        System.out.println(localDate);
         XYChart.Series use742 = new XYChart.Series<>();
         use742.setName("ID742 Verbrauchszahlen");
         XYChart.Series use735 = new XYChart.Series<>();
         use735.setName("ID735 Verbrauchszahlen");
-
+        System.out.println(localDate);
         int i = 0;
-        for (Float f:u742.getUsearray()) {
-            Instant time = u742.getStarttime().plus(u742.getUpdateTime()*i, ChronoUnit.MINUTES);
+        for (Float f:chosenuse742.getUsearray()) {
+            Instant time = chosenuse742.getStarttime().plus(chosenuse742.getUpdateTime()*i, ChronoUnit.MINUTES);
             use742.getData().add(new XYChart.Data<>(time.toString(), f));
             i++;
         }
+
         i = 0;
-        for (Float f:u735.getUsearray()) {
-            Instant time = u735.getStarttime().plus(u735.getUpdateTime()*i,ChronoUnit.MINUTES);
+        for (Float f:chosenuse735.getUsearray()) {
+            Instant time = chosenuse735.getStarttime().plus(chosenuse735.getUpdateTime()*i,ChronoUnit.MINUTES);
             use735.getData().add(new XYChart.Data<>(time.toString(), f));
             i++;
         }
 
         bc.getData().addAll(use742,use735);
+        System.out.println(2);
     }
 
 }

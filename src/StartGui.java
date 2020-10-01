@@ -30,6 +30,7 @@ public class StartGui extends Application{
 
         primaryStage.setScene(primaryscene);
         primaryStage.show();
+
     }
 
 }
