@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Model.StargGui">
+<AnchorPane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StartGui">
    <children>
       <Button layoutX="390.0" layoutY="368.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="85.0" text="Start" />
       <Label layoutX="119.0" layoutY="36.0" prefHeight="58.0" prefWidth="259.0" text="Datenanalyse" textAlignment="CENTER" textFill="#2daae1">
@@ -13,10 +13,7 @@
             <Font name="Arial Bold" size="40.0" />
          </font>
       </Label>
-      <ImageView fitHeight="139.0" fitWidth="234.0" layoutX="133.0" layoutY="152.0">
-         <image>
-            <Image url="@../../../Desktop/Unbenannt-2.png" />
-         </image>
+      <ImageView fx:id="logo" fitHeight="94.0" fitWidth="259.0" layoutX="121.0" layoutY="140.0">
       </ImageView>
    </children>
 </AnchorPane>

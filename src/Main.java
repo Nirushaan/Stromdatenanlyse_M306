@@ -37,7 +37,7 @@ public class Main extends Application{
 
         String[] idlist = {"ID742","ID735"};
         primaryStage.setTitle("Datenleser");
-        Button zahl = new Button("Zählerstand");
+        Button zahl = new Button("Zï¿½hlerstand");
         zahl.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -80,8 +80,8 @@ public class Main extends Application{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-        bc.setTitle("Absolute Zählerstand");
-        xAxis.setLabel("Zählerstand");
+        bc.setTitle("Absoluter Zï¿½hlerstand");
+        xAxis.setLabel("Zï¿½hlerstand");
         yAxis.setLabel("Wert");
         for (String id:idlist
              ) {
@@ -108,7 +108,7 @@ public class Main extends Application{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-        bc.setTitle("Relative Verbrauch");
+        bc.setTitle("Relativer Verbrauch");
         xAxis.setLabel("Verbrauch");
         yAxis.setLabel("Wert");
         for (String id:idlist
