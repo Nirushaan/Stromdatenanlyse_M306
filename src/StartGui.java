@@ -13,9 +13,9 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class StartGui extends Application implements Initializable {
+public class StartGui extends Application{
 
-    @FXML private ImageView logo;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -32,17 +32,4 @@ public class StartGui extends Application implements Initializable {
         primaryStage.show();
     }
 
-    public Image getImage() throws FileNotFoundException{
-        Image image = new Image(new FileInputStream("bin/Bilder/logo.png"));
-        return image;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            logo.setImage(getImage());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 }
