@@ -37,7 +37,7 @@ public class Reader_Sdat {
             Element end = (Element) (intervalelement).getElementsByTagName("rsm:EndDateTime").item(0);
             sdat.setStartDateTime(start.getTextContent());
             sdat.setEndDateTime(end.getTextContent());
-            // Get Model.Resolution value + unit
+            // Get Resolution value + unit
             Resolution resolution = new Resolution();
             NodeList resolist = doc.getElementsByTagName("rsm:Resolution");
             Node resoNode = resolist.item(0);
