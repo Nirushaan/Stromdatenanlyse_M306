@@ -3,10 +3,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -33,7 +30,9 @@ public class Main extends Application{
         ArrayList<Use> uses735 = combine.getId735uselist();
         TurntoDayUse day = new TurntoDayUse();
         ArrayList<Use> newuses742 = day.turn(uses742);
+        ArrayList<Timeandpower> timepower742 = day.getTimeandpowerslist();
         ArrayList<Use> newuses735 = day.turn(uses735);
+        ArrayList<Timeandpower> timepower735 = day.getTimeandpowerslist();
 
 
         String[] idlist = {"ID742","ID735"};
@@ -57,8 +56,20 @@ public class Main extends Application{
              primaryStage.setScene(verbrauchscene(newuses742,newuses735,idlist,x));
             }
         });
+        Button csv = new Button("Export Dateien zu CSV");
+        csv.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Csv_Export csv = new Csv_Export();
+                csv.writeDataLineByLine(".\\bin\\CSV-Files\\ID742.csv",timepower742,absolutes,"ID742");
+                System.out.println("finished1");
+                csv = new Csv_Export();
+                csv.writeDataLineByLine(".\\bin\\CSV-Files\\ID735.csv",timepower735,absolutes,"ID735");
+                System.out.println("finished2");
+            }
+        });
         VBox pane = new VBox();
-        pane.getChildren().addAll(zahl,daynumber,verbrauch);
+        pane.getChildren().addAll(zahl,daynumber,verbrauch,csv);
         Scene primaryscene = new Scene(pane);
         primaryStage.setScene(primaryscene);
         primaryStage.sizeToScene();
