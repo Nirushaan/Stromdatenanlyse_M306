@@ -90,8 +90,8 @@ public class DiagrammController{
 
 
 
-        bc.setTitle("Absoluter Zahlerstand");
-        xAxis.setLabel("Zahlerstand");
+        bc.setTitle("Absoluter Zählerstand");
+        xAxis.setLabel("Zählerstand");
         yAxis.setLabel("Wert");
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
             public void handle(ActionEvent e)
