@@ -54,8 +54,7 @@ public class Csv_Export {
                 position--;
                 for (; position >= 0 ; position--) {
                     instant = instant.minus(15,ChronoUnit.MINUTES);
-                    String utctime = toStringUnixTime(instant);
-
+                    String utctime = toStringUnixTime(timeandpowerlist.get(position).getTime());
                     String absolutevalue = timeandpowerlist.get(position).getPower().toString();
                     String[] stringtowrite = {utctime,absolutevalue};
                     stringstowrite.add(stringtowrite);
