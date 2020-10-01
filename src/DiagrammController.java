@@ -177,7 +177,7 @@ public class DiagrammController{
         Prepare_export prepareexport = new Prepare_export();
         Json_Export json = new Json_Export();
         String selectedDirectory = export.getText();
-        json.writeDataLineByLine(selectedDirectory,prepareexport.prepareforexport(timeandpowers735,absolutes),prepareexport.prepareforexport(timeandpowers742,absolutes));
+        json.writeDataLineByLine(selectedDirectory,prepareexport.prepareforexport(timeandpowers742,absolutes),prepareexport.prepareforexport(timeandpowers735,absolutes));
     }
 
 }
