@@ -3,6 +3,7 @@
     <properties maven-id="com.google.code.gson:gson:2.8.6" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/BZZ/306/openjfx-15_windows-x64_bin-sdk.zip!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

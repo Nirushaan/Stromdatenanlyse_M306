@@ -14,12 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import javax.imageio.IIOException;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
@@ -144,9 +141,7 @@ public class DiagrammController{
         layout.getChildren().add(bc);
         AnchorPane.setLeftAnchor(zuruck, 0d); // distance 0 from right side of
         AnchorPane.setTopAnchor(zuruck, 0d);
-
-        AnchorPane.setRightAnchor(bc, 0d); // distance 0 from right side of
-        AnchorPane.setBottomAnchor(bc, 0d);
+        bc.setMinSize(1500, 1000);
 
         layout.getChildren().add(zuruck);
 
@@ -167,7 +162,7 @@ public class DiagrammController{
         };
         zuruck.setOnAction(event);
 
-        Scene zähler = new Scene(layout,1000,1000);
+        Scene zähler = new Scene(layout,1500,1000);
 
         return zähler;
     }
