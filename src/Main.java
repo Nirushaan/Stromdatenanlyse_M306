@@ -57,6 +57,7 @@ public class Main extends Application{
              primaryStage.setScene(verbrauchscene(newuses742,newuses735,idlist,x));
             }
         });
+
         VBox pane = new VBox();
         pane.getChildren().addAll(zahl,daynumber,verbrauch);
         Scene primaryscene = new Scene(pane);
@@ -69,7 +70,7 @@ public class Main extends Application{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-        bc.setTitle("Absolute Zählerstand");
+        bc.setTitle("Absoluter Zählerstand");
         xAxis.setLabel("Zählerstand");
         yAxis.setLabel("Wert");
         for (String id:idlist
@@ -97,7 +98,7 @@ public class Main extends Application{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-        bc.setTitle("Relative Verbrauch");
+        bc.setTitle("Relativer Verbrauch");
         xAxis.setLabel("Verbrauch");
         yAxis.setLabel("Wert");
         for (String id:idlist
