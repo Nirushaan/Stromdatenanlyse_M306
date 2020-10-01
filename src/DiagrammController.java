@@ -158,7 +158,6 @@ public class DiagrammController{
     }
 
     public void choosefolder(ActionEvent actionEvent){
-
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("CSV-Datei Verzeichnis wählen");
         File defaultDirectory = new File(".");
@@ -168,10 +167,17 @@ public class DiagrammController{
     }
 
     public void csvexport(ActionEvent actionEvent) {
+        Prepare_export prepareexport = new Prepare_export();
         Csv_Export csv = new Csv_Export();
         String selectedDirectory = export.getText();
-        csv.writeDataLineByLine(selectedDirectory + "\\ID742.csv",timeandpowers742,absolutes,"ID742");
-        csv.writeDataLineByLine(selectedDirectory + "\\ID735.csv",timeandpowers735,absolutes,"ID735");
+        csv.writeDataLineByLine(selectedDirectory + "\\ID742.csv",prepareexport.prepareforexport(timeandpowers742,absolutes));
+        csv.writeDataLineByLine(selectedDirectory + "\\ID735.csv",prepareexport.prepareforexport(timeandpowers735,absolutes));
+    }
+    public void jsonexport(ActionEvent actionEvent) {
+        Prepare_export prepareexport = new Prepare_export();
+        Json_Export json = new Json_Export();
+        String selectedDirectory = export.getText();
+        json.writeDataLineByLine(selectedDirectory,prepareexport.prepareforexport(timeandpowers735,absolutes),prepareexport.prepareforexport(timeandpowers742,absolutes));
     }
 
 }
