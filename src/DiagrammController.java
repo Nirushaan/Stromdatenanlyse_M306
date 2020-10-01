@@ -1,18 +1,27 @@
 import Model.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.IIOException;
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -72,14 +81,40 @@ public class DiagrammController{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
+
+        AnchorPane layout = new AnchorPane();
+        Button zuruck = new Button("zurück");
+
+
+        layout.getChildren().add(bc);
+        AnchorPane.setLeftAnchor(zuruck, 0d); // distance 0 from right side of
+        AnchorPane.setTopAnchor(zuruck, 0d);
+        layout.getChildren().add(zuruck);
+
+
+
         bc.setTitle("Absoluter Zahlerstand");
         xAxis.setLabel("Zahlerstand");
         yAxis.setLabel("Wert");
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e)
+            {
+                try {
+                    zuruck(e);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        };
+        zuruck.setOnAction(event);
         for (String id:idlist
         ) {
             addSeriestoZaehler(bc,id);
         }
-        return new Scene(bc,1750,800);
+        Scene zähler = new Scene(layout,550,430);
+
+
+        return zähler;
     }
     private void addSeriestoZaehler(LineChart<String,Number> bc, String id){
         XYChart.Series high = new XYChart.Series<>();
@@ -101,11 +136,40 @@ public class DiagrammController{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
+
+        AnchorPane layout = new AnchorPane();
+        Button zuruck = new Button("zurück");
+
+
+        layout.getChildren().add(bc);
+        AnchorPane.setLeftAnchor(zuruck, 0d); // distance 0 from right side of
+        AnchorPane.setTopAnchor(zuruck, 0d);
+
+        AnchorPane.setRightAnchor(bc, 0d); // distance 0 from right side of
+        AnchorPane.setBottomAnchor(bc, 0d);
+
+        layout.getChildren().add(zuruck);
+
         bc.setTitle("Relativer Verbrauch");
         xAxis.setLabel("Verbrauch");
         yAxis.setLabel("Wert");
         addSeriestoVerbrauch(bc);
-        return new Scene(bc,1750,800);
+
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e)
+            {
+                try {
+                    zuruck(e);
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        };
+        zuruck.setOnAction(event);
+
+        Scene zähler = new Scene(layout,1000,1000);
+
+        return zähler;
     }
 
     private void addSeriestoVerbrauch(LineChart<String,Number> bc) {
@@ -179,5 +243,22 @@ public class DiagrammController{
         String selectedDirectory = export.getText();
         json.writeDataLineByLine(selectedDirectory,prepareexport.prepareforexport(timeandpowers742,absolutes),prepareexport.prepareforexport(timeandpowers735,absolutes));
     }
+
+
+    public void zuruck(ActionEvent actionEvent) throws IOException {
+        Parent saveGUIparent = FXMLLoader.load(getClass().getResource("DiagrammGui.fxml"));
+        Scene saveGUIscene = new Scene(saveGUIparent);
+
+        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(saveGUIscene);
+        window.show();
+
+    }
+
+
+
+
+
 
 }
