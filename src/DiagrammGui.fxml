@@ -22,5 +22,6 @@
         <TextField layoutX="70.0" layoutY="220.0" prefHeight="26.0" prefWidth="367.0" />
         <Button layoutX="450.0" layoutY="220.0" mnemonicParsing="false" text="Ordner wählen" />
         <Button layoutX="70.0" layoutY="274.0" mnemonicParsing="false" text="Export" />
+      <DialogPane layoutX="-194.0" layoutY="-79.0" />
     </children>
 </AnchorPane>
