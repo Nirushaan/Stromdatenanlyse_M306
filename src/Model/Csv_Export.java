@@ -5,8 +5,6 @@ import com.opencsv.CSVWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -59,7 +57,6 @@ public class Csv_Export {
                     String[] stringtowrite = {utctime,absolutevalue};
                     stringstowrite.add(stringtowrite);
                 }
-                System.out.println(instant);
 
             Collections.reverse(stringstowrite);
             for (String[] s:stringstowrite

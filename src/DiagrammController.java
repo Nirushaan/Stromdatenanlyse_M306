@@ -1,5 +1,4 @@
 import Model.*;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -8,13 +7,12 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.File;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -31,7 +29,7 @@ public class DiagrammController{
     @FXML
     private DatePicker date;
     @FXML
-    private Button export;
+    private TextField export;
 
     public DiagrammController() {
         Reader_Esl eslreader = new Reader_Esl();
@@ -57,7 +55,7 @@ public class DiagrammController{
         this.timeandpowers742 = timepower742;
     }
 
-    public void zustanddiagramm(ActionEvent actionEvent) throws IOException {
+    public void zustanddiagramm(ActionEvent actionEvent) {
         Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         window.setScene(zaehlerscene());
         window.show();
@@ -157,6 +155,23 @@ public class DiagrammController{
 
         bc.getData().addAll(use742,use735);
         System.out.println(2);
+    }
+
+    public void choosefolder(ActionEvent actionEvent){
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("CSV-Datei Verzeichnis wählen");
+        File defaultDirectory = new File(".");
+        directoryChooser.setInitialDirectory(defaultDirectory);
+        File selectedDirectory = directoryChooser.showDialog((Stage)((Node)actionEvent.getSource()).getScene().getWindow());
+        export.setText(selectedDirectory.toString());
+    }
+
+    public void csvexport(ActionEvent actionEvent) {
+        Csv_Export csv = new Csv_Export();
+        String selectedDirectory = export.getText();
+        csv.writeDataLineByLine(selectedDirectory + "\\ID742.csv",timeandpowers742,absolutes,"ID742");
+        csv.writeDataLineByLine(selectedDirectory + "\\ID735.csv",timeandpowers735,absolutes,"ID735");
     }
 
 }
