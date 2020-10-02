@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Bunzlienergie_jar</output-path>
     <root id="archive" name="Bunzlienergie.jar">
       <element id="module-output" name="Bunzlienergie" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/json-simple-1.1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/javafx-sdk-15/lib/src.zip" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/javafx-sdk-15/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/javafx-sdk-15/lib/javafx.web.jar" path-in-jar="/" />
@@ -13,8 +14,6 @@
       <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/javafx-sdk-15/lib/javafx.controls.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/javafx-sdk-15/lib/javafx.graphics.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/opencsv-5.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/json-simple-1.1.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Desktop/BZZ/306/openjfx-15_windows-x64_bin-sdk.zip" path-in-jar="/" />
     </root>
   </artifact>
 </component>

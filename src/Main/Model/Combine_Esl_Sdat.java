@@ -1,4 +1,4 @@
-package Model;
+package Main.Model;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ public class Combine_Esl_Sdat {
     private ArrayList<Absolute> absolutelist = new ArrayList<>();
     private ArrayList<Use> id742uselist = new ArrayList<>();
     private ArrayList<Use> id735uselist = new ArrayList<>();
-    public Combine_Esl_Sdat(ArrayList<Esl> esllist,ArrayList<Sdat> sdatlist) {
+    public Combine_Esl_Sdat(ArrayList<Esl> esllist, ArrayList<Sdat> sdatlist) {
         splitDocuments(sdatlist);
         sortDocuments(id735list);
         sortDocuments(id742list);

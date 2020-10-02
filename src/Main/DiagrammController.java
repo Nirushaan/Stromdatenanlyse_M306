@@ -1,4 +1,6 @@
-import Model.*;
+package Main;
+
+import Main.Model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
