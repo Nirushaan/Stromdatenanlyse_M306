@@ -14,6 +14,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
@@ -21,6 +22,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -38,6 +41,10 @@ public class DiagrammController{
     private DatePicker date;
     @FXML
     private TextField export;
+    @FXML
+    private Label warning;
+    @FXML
+    private Label warningexport;
 
     public DiagrammController() {
         Reader_Esl eslreader = new Reader_Esl();
@@ -70,9 +77,14 @@ public class DiagrammController{
     }
 
     public void verbrauchsiagramm(ActionEvent actionEvent) {
-        Stage window = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        window.setScene(verbrauchscene());
-        window.show();
+        if (this.date.getValue() != null) {
+
+            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            window.setScene(verbrauchscene());
+            window.show();
+        } else {
+            warning.setText("Bitte ein Tag mit dem Daypicker wählen");
+        }
     }
 
     private Scene zaehlerscene(){
@@ -80,11 +92,8 @@ public class DiagrammController{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-
         AnchorPane layout = new AnchorPane();
         Button zuruck = new Button("zurück");
-
-
         layout.getChildren().add(bc);
         AnchorPane.setLeftAnchor(zuruck, 0d); // distance 0 from right side of
         AnchorPane.setTopAnchor(zuruck, 0d);
@@ -92,8 +101,8 @@ public class DiagrammController{
 
 
 
-        bc.setTitle("Absoluter Zählerstand");
-        xAxis.setLabel("Zählerstand");
+        bc.setTitle("Absoluter Zahlerstand");
+        xAxis.setLabel("Zahlerstand");
         yAxis.setLabel("Wert");
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
             public void handle(ActionEvent e)
@@ -135,15 +144,12 @@ public class DiagrammController{
         NumberAxis yAxis = new NumberAxis();
         LineChart<String,Number> bc =
                 new LineChart<>(xAxis, yAxis);
-
         AnchorPane layout = new AnchorPane();
         Button zuruck = new Button("zurück");
-
-
         layout.getChildren().add(bc);
         AnchorPane.setLeftAnchor(zuruck, 0d); // distance 0 from right side of
         AnchorPane.setTopAnchor(zuruck, 0d);
-        bc.setMinSize(1500, 800);
+        bc.setMinSize(1700, 1000);
 
         layout.getChildren().add(zuruck);
 
@@ -164,17 +170,13 @@ public class DiagrammController{
         };
         zuruck.setOnAction(event);
 
-        Scene zähler = new Scene(layout,1500,1000);
+        Scene zähler = new Scene(layout,1700,1000);
 
         return zähler;
     }
 
     private void addSeriestoVerbrauch(LineChart<String,Number> bc) {
-
         LocalDate localDate = this.date.getValue();
-
-        System.out.println(localDate);
-        System.out.println(Instant.from(localDate.atStartOfDay(ZoneId.systemDefault())));
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         instant = instant.plus(1,ChronoUnit.DAYS);
         Use chosenuse742 = new Use();
@@ -193,34 +195,32 @@ public class DiagrammController{
                 break;
             }
         }
-        System.out.println(chosenuse735.getStarttime());
-        System.out.println(localDate);
+
         XYChart.Series use742 = new XYChart.Series<>();
         use742.setName("ID742 Verbrauchszahlen");
         XYChart.Series use735 = new XYChart.Series<>();
         use735.setName("ID735 Verbrauchszahlen");
-        System.out.println(localDate);
-        int i = 0;
-        for (Float f:chosenuse742.getUsearray()) {
-            Instant time = chosenuse742.getStarttime().plus(chosenuse742.getUpdateTime()*i, ChronoUnit.MINUTES);
-            use742.getData().add(new XYChart.Data<>(time.toString(), f));
-            i++;
-        }
 
-        i = 0;
-        for (Float f:chosenuse735.getUsearray()) {
-            Instant time = chosenuse735.getStarttime().plus(chosenuse735.getUpdateTime()*i,ChronoUnit.MINUTES);
-            use735.getData().add(new XYChart.Data<>(time.toString(), f));
-            i++;
-        }
+        createchartdata(chosenuse742, use742);
+        createchartdata(chosenuse735, use735);
 
         bc.getData().addAll(use742,use735);
-        System.out.println(2);
+    }
+
+    private void createchartdata(Use chosenuse, XYChart.Series use) {
+        int i = 0;
+        if (chosenuse.getID() != null) {
+            for (Float f : chosenuse.getUsearray()) {
+                Instant time = chosenuse.getStarttime().plus(chosenuse.getUpdateTime() * i, ChronoUnit.MINUTES);
+                use.getData().add(new XYChart.Data<>(time.toString(), f));
+                i++;
+            }
+        }
     }
 
     public void choosefolder(ActionEvent actionEvent){
         DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("CSV-Datei Verzeichnis wählen");
+        directoryChooser.setTitle("Verzeichnis wählen");
         File defaultDirectory = new File(".");
         directoryChooser.setInitialDirectory(defaultDirectory);
         File selectedDirectory = directoryChooser.showDialog((Stage)((Node)actionEvent.getSource()).getScene().getWindow());
@@ -228,17 +228,26 @@ public class DiagrammController{
     }
 
     public void csvexport(ActionEvent actionEvent) {
-        Prepare_export prepareexport = new Prepare_export();
-        Csv_Export csv = new Csv_Export();
-        String selectedDirectory = export.getText();
-        csv.writeDataLineByLine(selectedDirectory + "\\ID742.csv",prepareexport.prepareforexport(timeandpowers742,absolutes));
-        csv.writeDataLineByLine(selectedDirectory + "\\ID735.csv",prepareexport.prepareforexport(timeandpowers735,absolutes));
+        if(!export.getText().equals("")) {
+                Prepare_export prepareexport = new Prepare_export();
+                Csv_Export csv = new Csv_Export();
+                String selectedDirectory = export.getText();
+                csv.writeDataLineByLine(selectedDirectory + "\\ID742.csv", prepareexport.prepareforexport(timeandpowers742, absolutes));
+                csv.writeDataLineByLine(selectedDirectory + "\\ID735.csv", prepareexport.prepareforexport(timeandpowers735, absolutes));
+        } else {
+            warningexport.setText("Bitte wählen sie ein Verzeichnis");
+        }
     }
     public void jsonexport(ActionEvent actionEvent) {
-        Prepare_export prepareexport = new Prepare_export();
-        Json_Export json = new Json_Export();
-        String selectedDirectory = export.getText();
-        json.writeDataLineByLine(selectedDirectory,prepareexport.prepareforexport(timeandpowers742,absolutes),prepareexport.prepareforexport(timeandpowers735,absolutes));
+        if(!export.getText().equals("")) {
+                Prepare_export prepareexport = new Prepare_export();
+                Json_Export json = new Json_Export();
+                String selectedDirectory = export.getText();
+                json.writeDataLineByLine(selectedDirectory, prepareexport.prepareforexport(timeandpowers742, absolutes), prepareexport.prepareforexport(timeandpowers735, absolutes));
+
+    } else {
+        warningexport.setText("Bitte wählen sie ein Verzeichnis");
+    }
     }
 
 
@@ -253,7 +262,14 @@ public class DiagrammController{
 
     }
 
-
+    public static boolean isValidPath(String path) {
+        try {
+            Paths.get(path);
+        } catch (InvalidPathException | NullPointerException ex) {
+            return false;
+        }
+        return true;
+    }
 
 
 

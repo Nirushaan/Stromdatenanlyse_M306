@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact name="Bunzli">
+    <output-path>$PROJECT_DIR$/out/artifacts/Bunzli</output-path>
+    <root id="root">
+      <element id="module-output" name="Bunzlienergie" />
+      <element id="library" level="project" name="json-simple-1.1.1" />
+      <element id="library" level="project" name="lib" />
+      <element id="library" level="project" name="opencsv-5.2" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+    </root>
+  </artifact>
+</component>
