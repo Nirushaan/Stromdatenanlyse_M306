@@ -74,11 +74,11 @@ public class Reader_Sdat {
     public void readAllFiles() {
         try {
             String[] fileNames =
-                    Files.list(Paths.get(".\\bin\\SDAT-Files")).filter(
+                    Files.list(Paths.get("resources\\SDAT-Files")).filter(
                             Files::isRegularFile).map(
                             p -> p.toFile().getName()).toArray(String[]::new);
             for (String s : fileNames) {
-                File filepath = new File(".\\bin\\SDAT-Files\\" + s);
+                File filepath = new File("resources\\SDAT-Files\\" + s);
                 readFile(filepath);
             }
         } catch (Exception e) {

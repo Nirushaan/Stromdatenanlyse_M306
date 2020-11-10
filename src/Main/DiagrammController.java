@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
@@ -101,8 +102,8 @@ public class DiagrammController{
 
 
 
-        bc.setTitle("Absoluter Zahlerstand");
-        xAxis.setLabel("Zahlerstand");
+        bc.setTitle("Absoluter Zählerstand");
+        xAxis.setLabel("Monat");
         yAxis.setLabel("Wert");
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
             public void handle(ActionEvent e)
@@ -152,6 +153,7 @@ public class DiagrammController{
         bc.setMinSize(1700, 1000);
 
         layout.getChildren().add(zuruck);
+
 
         bc.setTitle("Relativer Verbrauch");
         xAxis.setLabel("Verbrauch");
