@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact name="Bunzli">
+    <output-path>$PROJECT_DIR$/out/artifacts/Bunzli</output-path>
+    <root id="root">
+      <element id="module-output" name="Bunzlienergie" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+    </root>
+  </artifact>
+</component>

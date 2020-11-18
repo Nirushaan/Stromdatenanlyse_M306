@@ -68,11 +68,11 @@ public class Reader_Esl {
     public void readAllFiles(){
         try {
             String[] fileNames =
-                    Files.list(Paths.get(".\\bin\\ESL-Files")).filter(
+                    Files.list(Paths.get("resources\\ESL-Files")).filter(
                             Files::isRegularFile).map(
                             p -> p.toFile().getName()).toArray(String[]::new);
             for (String s : fileNames) {
-                File filepath = new File(".\\bin\\ESL-Files\\" + s);
+                File filepath = new File("resources\\ESL-Files\\" + s);
                 readFile(filepath);
             }
         }

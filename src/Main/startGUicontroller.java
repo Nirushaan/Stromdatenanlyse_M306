@@ -24,7 +24,7 @@ public class startGUicontroller implements Initializable {
 
 
     public Image getImage() throws FileNotFoundException {
-        Image image = new Image(new FileInputStream("bin/Bilder/logo.png"));
+        Image image = new Image(new FileInputStream("resources/Bilder/logo.png"));
         return image;
     }
 
